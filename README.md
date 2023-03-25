@@ -1,25 +1,82 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| column             | type   | option                   |
+| ------------------ | ------ | ------------------------ |
+| nickname           | string | null: false,unique: true |
+| email              | string | null: false,unique: true |
+| encrypted_password | string | null: false,unique: true |
+| last_name          | string | null: false              |
+| first_name         | string | null: false              |
+| last_name_kana     | string | null: false              |
+| first_name_kana    | string | null: false              |
+| birthday           | date   | null: false              |
 
-* Ruby version
+## Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_many :orders
 
-* Configuration
+## items table
 
-* Database creation
+| column         | type      | option      |
+| -------------- | --------- | ----------- |
+| user           | reference | null: false |
+| name           | string    | null: false |
+| description    | text      | null: false |
+| category_id    | integer   | null: false |
+| condition      | integer   | null: false |
+| shipping_fee   | integer   | null: false |
+| shipping_payer | integer   | null: false |
+| shipping_from  | integer   | null: false |
+| shipping_days  | integer   | null: false |
+| price          | integer   | null: false |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :users
+- has_one :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders table
 
-* Deployment instructions
+| column  | type      | option                        |
+| ------- | --------- | ----------------------------- |
+| item_id | reference | null: false,foreign_key: true |
+| user    | reference | null: false,foreign_key: true |
 
-* ...
-# furima-39108
+### Association
+
+- has_one :order_addresses
+- belongs_to :user
+
+## order_addressees table
+
+| column        | type       | option                        |
+| ------------- | ---------- | ----------------------------- |
+| orders        | references | null: false,foreign_key: true |
+| postcode      | string     | null: false                   |
+| prefecture_id | integer    | null: false                   |
+| city          | string     | null: false                   |
+| block         | string     | null: false                   |
+| building      | string     |                               |
+| phone_number  | string     | null: false                   |
+
+### Association
+
+- belongs_to :order
+
+## comments table
+
+| column  | type      | option                        |
+| ------- | --------- | ----------------------------- |
+| content | text      | null: false                   |
+| item    | reference | null: false,foreign_key: true |
+| user    | reference | null: false,foreign_key: true |
+| text    | text      | null: false                   |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
