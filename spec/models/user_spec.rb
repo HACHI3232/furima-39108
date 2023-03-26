@@ -6,17 +6,17 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
-    # context '新規登録できる場合' do
-    #   it "'全ての項目の入力がが存在すれば登録できること'" do
-    #     expect(@user).to be_valid
-    #   end
+    context '新規登録できる場合' do
+      it "'全ての項目の入力がが存在すれば登録できること'" do
+        expect(@user).to be_valid
+      end
 
-    #   it 'passwordが6文字以上かつ半角英数字混合であれば登録できること' do
-    #     @user.password = '12345a'
-    #     @user.password_confirmation = '12345a'
-    #     expect(@user).to be_valid
-    #   end
-    # end
+      it 'passwordが6文字以上かつ半角英数字混合であれば登録できること' do
+        @user.password = '12345a'
+        @user.password_confirmation = '12345a'
+        expect(@user).to be_valid
+      end
+    end
 
     context '新規登録できない場合' do
       it 'nicknameが空の場合、エラーになること' do
@@ -84,7 +84,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it 'お名前(全角)の名字が空の場合、、エラーになること' do
+      it 'お名前(全角)の名字が空の場合、エラーになること' do
         @user.last_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
@@ -96,24 +96,30 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
+      it 'お名前(全角)の名字に半角が入っている場合、エラーになること' do
+        @user.last_name = 'Yamadaﾀﾛｳ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name は全角(漢字・ひらがな・カタカナ)で入力して下さい。')
+        expect(@user.save).to be_falsey
+      end
+
+      it 'お名前(全角)の名字に半角が入っている場合、エラーになること' do
+        @user.first_name = 'Yamadaﾀﾛｳ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name は全角(漢字・ひらがな・カタカナ)で入力して下さい。')
+        expect(@user.save).to be_falsey
+      end
+
       it 'お名前カナ(全角)名字のフリガナが空の場合、エラーになること' do
         @user.last_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana can't be blank",
-                                                      'Last name kana は全角カタカナで入力して下さい。')
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
 
       it 'お名前カナ(全角)名前のフリガナが空の場合、エラーになること' do
         @user.first_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana can't be blank",
-                                                      'First name kana は全角カタカナで入力して下さい。')
-      end
-
-      it 'お名前(全角)が全角（漢字・ひらがな・カタカナ）で入力されていないとエラーになること' do
-        @user.first_name = 'test'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('First name は全角(漢字・ひらがな・カタカナ)で入力して下さい。')
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
 
       it 'お名前カナ(全角)が全角（カタカナ）での入力されていないとエラーになること' do
