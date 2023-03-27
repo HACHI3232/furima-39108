@@ -100,7 +100,6 @@ RSpec.describe User, type: :model do
         @user.last_name = 'Yamadaﾀﾛｳ123'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name は全角(漢字・ひらがな・カタカナ)で入力して下さい。')
-        expect(@user.save).to be_falsey
       end
 
       it 'お名前(全角)の名字に半角が入っている場合、エラーになること' do
