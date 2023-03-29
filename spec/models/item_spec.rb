@@ -48,6 +48,26 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it 'カテゴリーが「---」以外であれば登録できる' do
+        @item.category_id = 1
+        expect(@item).to be_valid
+      end
+      it '商品の状態が「---」以外であれば登録できる' do
+        @item.condition_id = 1
+        expect(@item).to be_valid
+      end
+      it '配送料の負担が「---」以外であれば登録できる' do
+        @item.shipping_payer_id = 1
+        expect(@item).to be_valid
+      end
+      it '発送元の地域が「---」以外であれば登録できる' do
+        @item.prefecture_id = 1
+        expect(@item).to be_valid
+      end
+      it '発送までの日数が「---」以外であれば登録できる' do
+        @item.shipping_day_id = 1
+        expect(@item).to be_valid
+      end
       it '価格が空欄だと出品登録が出来ない' do
         @item.price = ''
         @item.valid?

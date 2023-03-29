@@ -8,7 +8,7 @@ FactoryBot.define do
     shipping_payer { ShippingPayer.all.sample }
     prefecture { Prefecture.all.sample }
     shipping_day { ShippingDay.all.sample }
-    price { Faker::Commerce.price(range: 300..9_999_999) }
+    price { Faker::Number.between(from: 300, to: 9_999_999) }
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
