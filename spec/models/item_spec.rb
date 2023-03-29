@@ -101,7 +101,7 @@ RSpec.describe Item, type: :model do
       it '価格が空欄だと出品登録が出来ないこと' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '価格が半角数値以外だと出品登録が出来ないこと' do
         @item.price = 'あｱa'
