@@ -5,7 +5,7 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     category { Category.all.sample }
     condition { Condition.all.sample }
-    shipping_payer { ShippingPayer.all.sample  }
+    shipping_payer { ShippingPayer.all.sample }
     prefecture { Prefecture.all.sample }
     shipping_day { ShippingDay.all.sample }
     price { Faker::Commerce.price(range: 300..9_999_999) }
@@ -14,5 +14,3 @@ FactoryBot.define do
     end
   end
 end
-
-

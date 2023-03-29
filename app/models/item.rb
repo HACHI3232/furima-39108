@@ -7,7 +7,8 @@ class Item < ApplicationRecord
   end
 
   # 価格のバリデーション
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 }, format: { with: /\A[0-9]+\z/, message: "半角数字のみ登録可能です" }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 },
+                    format: { with: /\A[0-9]+\z/, message: '半角数字のみ登録可能です' }
 
   # アソシエーション
   belongs_to :category
