@@ -3,13 +3,13 @@ class Item < ApplicationRecord
 
   # テーブルのバリデーション(空だと登録できない)
   with_options presence: true do
-    validates :image, :name, :description, :category_id, :condition_id, :shipping_payer_id, :prefecture_id, :shipping_day_id
+    validates :image, :name, :description, :category_id, :condition_id, :shipping_payer_id, :prefecture_id, :shipping_day_id,
+              exclusion: { in: ['---'] }
   end
-  validates :category_id, :condition_id, :shipping_payer_id, :prefecture_id, :shipping_day_id, exclusion: { in: ['---'] }
 
   # 価格のバリデーション
-  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 9_999_999 },
-                    format: { with: /\A[0-9]+\z/, message: '半角数字のみ登録可能です' }
+  validates :price, presence: true,
+                    numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   # アソシエーション
   belongs_to :category
