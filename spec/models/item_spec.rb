@@ -73,11 +73,35 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-
-      it '価格が空欄だと出品登録が出来ない' do
+      it 'カテゴリーが未選択の場合保存できないこと' do
+        @item.category_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+      it '商品の状態が未選択の場合保存できないこと' do
+        @item.condition_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
+      end
+      it '配送料の負担が未選択の場合保存できないこと' do
+        @item.shipping_payer_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping payer can't be blank")
+      end
+      it '発送元の地域が未選択の場合保存できないこと' do
+        @item.prefecture_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it '発送までの日数が未選択の場合保存できないこと' do
+        @item.shipping_day_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      end
+      it '価格が空欄だと出品登録が出来ないこと' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it '価格が半角数値以外だと出品登録が出来ないこと' do
         @item.price = 'あｱa'
