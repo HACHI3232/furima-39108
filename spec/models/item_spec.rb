@@ -11,23 +11,23 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it 'カテゴリーが「---」以外であれば登録できること' do
-        @item.category_id = 1
+        @item.category_id = 2
         expect(@item).to be_valid
       end
       it '商品の状態が「---」以外であれば登録できること' do
-        @item.condition_id = 1
+        @item.condition_id = 2
         expect(@item).to be_valid
       end
       it '配送料の負担が「---」以外であれば登録できること' do
-        @item.shipping_payer_id = 1
+        @item.shipping_payer_id = 2
         expect(@item).to be_valid
       end
       it '発送元の地域が「---」以外であれば登録できること' do
-        @item.prefecture_id = 1
+        @item.prefecture_id = 2
         expect(@item).to be_valid
       end
       it '発送までの日数が「---」以外であれば登録できること' do
-        @item.shipping_day_id = 1
+        @item.shipping_day_id = 2
         expect(@item).to be_valid
       end
     end
@@ -74,27 +74,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'カテゴリーが未選択の場合保存できないこと' do
-        @item.category_id = 0
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態が未選択の場合保存できないこと' do
-        @item.condition_id = 0
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it '配送料の負担が未選択の場合保存できないこと' do
-        @item.shipping_payer_id = 0
+        @item.shipping_payer_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping payer can't be blank")
       end
       it '発送元の地域が未選択の場合保存できないこと' do
-        @item.prefecture_id = 0
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '発送までの日数が未選択の場合保存できないこと' do
-        @item.shipping_day_id = 0
+        @item.shipping_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
