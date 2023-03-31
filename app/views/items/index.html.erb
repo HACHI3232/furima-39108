@@ -127,7 +127,8 @@
     </div>
 
     <ul class='item-lists'>
-      <% @item.each do |item|%>
+      <% @items.each do |item|%>
+        <% if item.present? %>
           <li class='list'>
             <%= link_to "#" do %>
               <div class='item-img-content'>
@@ -151,24 +152,27 @@
               </div>
             <% end %>
           </li>
+
         <% end %>
-        <% if @items.blank? %>
-          <li class='list'>
-            <%= link_to '#' do %>
-              <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
-              <div class='item-info'>
-                <h3 class='item-name'>商品を出品してね！</h3>
-                <div class='item-price'>
-                  <span>99999999円<br>(税込み)</span>
-                  <div class='star-btn'>
-                    <%= image_tag "star.png", class:"star-icon" %>
-                    <span class='star-count'>0</span>
-                  </div>
+      <% end %>
+
+      <% if @items.blank? %>
+        <li class='list'>
+          <%= link_to '#' do %>
+            <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+            <div class='item-info'>
+              <h3 class='item-name'>商品を出品してね！</h3>
+              <div class='item-price'>
+                <span>99999999円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
                 </div>
               </div>
-            <% end %>
-          </li>
-        <% end %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
