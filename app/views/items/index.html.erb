@@ -128,7 +128,6 @@
 
     <ul class='item-lists'>
       <% @item.each do |item|%>
-        <% if item.present? %>
           <li class='list'>
             <%= link_to "#" do %>
               <div class='item-img-content'>
@@ -152,7 +151,8 @@
               </div>
             <% end %>
           </li>
-        <% else %>
+        <% end %>
+        <% if @items.blank? %>
           <li class='list'>
             <%= link_to '#' do %>
               <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -169,7 +169,6 @@
             <% end %>
           </li>
         <% end %>
-      <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
