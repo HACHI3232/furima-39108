@@ -14,8 +14,3 @@ FactoryBot.define do
     end
   end
 end
-# category { Category.all.sample }
-# condition { Condition.all.sample }
-# shipping_payer { ShippingPayer.all.sample }
-# prefecture { Prefecture.all.sample }
-# shipping_day { ShippingDay.all.sample }
