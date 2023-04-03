@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   def index
     @order_form = OrderForm.new
     @item = Item.find(params[:item_id])
+
+    redirect_to root_path if @item.order
   end
 
   def create
