@@ -1,5 +1,5 @@
 const pay = () => {
-  const payjp = Payjp("pk_test_c11eb9ec0c9312cd5518c01f"); // PAY.JPテスト公開鍵
+  const payjp = Payjp(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
   const form = document.getElementById("charge-form");
   const elements = payjp.elements();
   const numberElement = elements.create("cardNumber");
@@ -17,8 +17,6 @@ const pay = () => {
       if (response.error) {
       } else {
         const token = response.id;
-        console.log(token);
-
         const tokenObj = `<input value=${token} name='token' type='hidden'>`;
         form.insertAdjacentHTML("beforeend", tokenObj);
 
