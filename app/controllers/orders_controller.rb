@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [:index,:create]
+  before_action :set_item, only: [:index, :create]
 
   def index
     @order_form = OrderForm.new
-    redirect_to root_path if @item.order || (@item.user == current_user)
+    redirect_to root_path if (@item.order && @item.order.user != current_user) || (@item.user == current_user && !@item.order)
   end
 
   def create
@@ -29,14 +29,14 @@ class OrdersController < ApplicationController
       :building,
       :phone_number
     ).merge(
-      user_id:current_user.id,
-      item_id:params[:item_id],
-      token:params[:token]
+      user_id: current_user.id,
+      item_id: params[:item_id],
+      token: params[:token]
     )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     customer = Payjp::Customer.create(
       description: 'card',
       card: order_params[:token]
