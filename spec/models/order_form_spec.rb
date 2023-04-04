@@ -4,7 +4,7 @@ RSpec.describe OrderForm, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      @order_form = FactoryBot.build(:order_form, user_id: user.id,item_id: item.id)
+      @order_form = FactoryBot.build(:order_form, user_id: user.id, item_id: item.id)
     end
 
     context '配送先情報の購入ができるとき' do
@@ -49,7 +49,7 @@ RSpec.describe OrderForm, type: :model do
     end
 
     context '配送先情報の購入ができないとき' do
-      it "郵便番号が空欄だと購入できないこと" do
+      it '郵便番号が空欄だと購入できないこと' do
         @order_form.postcode = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postcode can't be blank")
@@ -67,19 +67,19 @@ RSpec.describe OrderForm, type: :model do
         expect(@order_form.errors.full_messages).to include("Item can't be blank")
       end
 
-      it "郵便番号が空では購入できないこと" do
+      it '郵便番号が空では購入できないこと' do
         @order_form.postcode = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postcode can't be blank")
       end
 
-      it "郵便番号が半角ハイフンを含む形でなければ購入できないこと" do
-        @order_form.postcode = "123-456"
+      it '郵便番号が半角ハイフンを含む形でなければ購入できないこと' do
+        @order_form.postcode = '123-456'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Postcode is invalid")
+        expect(@order_form.errors.full_messages).to include('Postcode is invalid')
       end
 
-      it "都道府県が空欄だと購入できないこと" do
+      it '都道府県が空欄だと購入できないこと' do
         @order_form.prefecture_id = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Prefecture can't be blank")
@@ -87,43 +87,43 @@ RSpec.describe OrderForm, type: :model do
       it '都道府県が未選択の場合購入できないこと' do
         @order_form.prefecture_id = 1
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@order_form.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
-      it "市区町村が空では購入できないこと" do
+      it '市区町村が空では購入できないこと' do
         @order_form.block = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Block can't be blank")
       end
 
-      it "番地が空では購入できない" do
+      it '番地が空では購入できない' do
         @order_form.city = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("City can't be blank")
       end
 
-      it "電話番号が空では購入できないこと" do
+      it '電話番号が空では購入できないこと' do
         @order_form.phone_number = nil
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
 
-      it "電話番号が9桁以下では購入できないこと" do
-        @order_form.phone_number = "123456789"
+      it '電話番号が9桁以下では購入できないこと' do
+        @order_form.phone_number = '123456789'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
 
-      it "電話番号は、10桁以上11桁以内の半角数値のみでないと購入できないこと" do
-        @order_form.phone_number = "123456789012"
+      it '電話番号は、10桁以上11桁以内の半角数値のみでないと購入できないこと' do
+        @order_form.phone_number = '123456789012'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
 
-      it "電話番号に半角数字以外が含まれている場合は購入できないこと（※半角数字以外が一文字でも含まれていれば良い）" do
-        @order_form.phone_number = "090-1234-5678"
+      it '電話番号に半角数字以外が含まれている場合は購入できないこと（※半角数字以外が一文字でも含まれていれば良い）' do
+        @order_form.phone_number = '090-1234-5678'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_form.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'トークンが空だと購入できないこと' do

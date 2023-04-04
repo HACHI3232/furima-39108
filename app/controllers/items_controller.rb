@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show]
-  before_action :set_item, only: [:show, :edit, :update,:destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_root, only: [:edit, :destroy]
 
   def index
@@ -24,9 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.order.present?
-      redirect_to root_path
-    end
+    return unless @item.order.present?
+
+    redirect_to root_path
   end
 
   def update
@@ -42,7 +42,6 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def item_params
@@ -55,8 +54,8 @@ class ItemsController < ApplicationController
   end
 
   def redirect_to_root
-    if @item.user_id != current_user.id
-      redirect_to root_path
-    end
+    return unless @item.user_id != current_user.id
+
+    redirect_to root_path
   end
 end
