@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     @order_form = OrderForm.new
-    if  @item.order.present? || current_user == @item.user  || @item.user_id != current_user.id
+    if  @item.order.present? || current_user == @item.user
       redirect_to root_path
     end
   end
