@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :sold
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_item
 
   def index
     @order_form = OrderForm.new
-    redirect_to root_path if  @item.order.present? || current_user == @item.user
+    if  @item.order.present? || current_user == @item.user
+      redirect_to root_path
+    end
   end
 
   def create
@@ -44,16 +45,7 @@ class OrdersController < ApplicationController
     )
   end
 
-  def sold
-    @item = Item.find(params[:item_id])
-    if @item.order.present?
-      redirect_to root_path
-    end
-  end
-
   def set_item
-    if current_user = @item.user || @item.sold?
-      redirect_to root_path
-    end
+    @item = Item.find(params[:item_id])
   end
 end
