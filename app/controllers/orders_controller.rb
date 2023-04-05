@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     @order_form = OrderForm.new
-    redirect_to root_path if (@item.order && @item.order.user != current_user) || (@item.user == current_user && !@item.order)
+    redirect_to root_path if  @item.order.present? || current_user != @item.order
   end
 
   def create
