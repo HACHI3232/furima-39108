@@ -19,9 +19,8 @@ const pay = () => {
 				const tokenObj = `<input value=${token} name='token' type='hidden'>`;
 				form.insertAdjacentHTML("beforeend", tokenObj);
 			}
+			form.submit();
 		});
-
-		form.submit();
 	});
 };
 

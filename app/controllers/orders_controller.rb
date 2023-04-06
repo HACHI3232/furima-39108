@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!
   before_action :set_item
 
   def index
@@ -40,8 +40,8 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     customer = Payjp::Customer.create(
-      description: 'card',
-      card: order_params[:token]
+      description: 'test',
+      card: order_params[:token],
     )
   end
 
