@@ -1,0 +1,29 @@
+ja:
+  activemodel:
+    attributes:
+      order_form:
+        postcode: 郵便番号
+        city: 市区町村
+        block: 番地
+        token: カード情報
+        prefecture_id: 都道府県
+        phone_number: 電話番号
+  activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        birthday: 生年月日
+        first_name: お名前(全角)
+        last_name: お名前(全角)
+        first_name_kana: お名前(カナ)
+        last_name_kana: お名前(カナ)
+      item:
+        image: 画像
+        name: 商品名
+        description: 商品の説明
+        price: 販売価格
+        category_id: カテゴリー
+        condition_id: 商品の状態
+        shipping_payer_id: 配送料の負担
+        shipping_day_id: 発送までの日数
+        prefecture_id: 発送元の地域
