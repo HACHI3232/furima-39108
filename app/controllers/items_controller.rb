@@ -50,8 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    binding.pry
-
     @item = Item.find(params[:id])
   end
 

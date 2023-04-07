@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   end
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
-  with_options numericality: { other_than: 1, message: "can't be blank" } do
+  with_options numericality: { other_than: 1, message: "を選択して下さい" } do
     validates :category_id, :condition_id, :shipping_payer_id, :prefecture_id, :shipping_day_id
   end
 

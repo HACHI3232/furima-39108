@@ -87,7 +87,7 @@ RSpec.describe OrderForm, type: :model do
       it '都道府県が未選択の場合購入できないこと' do
         @order_form.prefecture_id = 1
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include('Prefecture must be other than 1')
+        expect(@order_form.errors.full_messages).to include('Prefecture を選択して下さい')
       end
 
       it '市区町村が空では購入できないこと' do
