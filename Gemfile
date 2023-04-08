@@ -80,3 +80,4 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
 end
+gem 'mail', '2.7.1'
