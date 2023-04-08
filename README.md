@@ -65,5 +65,3 @@
 ### Association
 
 - belongs_to :order
-
-## comments table
