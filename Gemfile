@@ -71,7 +71,7 @@ gem 'active_hash'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
-
+gem 'mail', '2.7.1'
 
 group :development, :test do
   gem 'capistrano'
@@ -80,5 +80,3 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
 end
-gem 'mail', '2.7.1'
-gem 'date', '3.3.3'
