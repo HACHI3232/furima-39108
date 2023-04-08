@@ -96,7 +96,7 @@
   </div>
 <div class="links">
   <% if Item.exists?(@item.id+1) %>
-    <%= link_to "＜ 前の商品", item_path(@item.id+1), class: "change-item-btn" %>
+    <%= link_to "＜ 前の商品", item_path(@item.id+1), class: "change-item-btn-prev" %>
   <% end %>
   <% if Item.exists?(@item.id-1) %>
     <%= link_to "後ろの商品 ＞", item_path(@item.id-1), class: "change-item-btn" %>

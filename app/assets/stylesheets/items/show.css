@@ -195,6 +195,13 @@
 	margin-left: auto; /* 追加 */
 }
 
+.change-item-btn-prev {
+	font-size: 30px;
+	text-decoration: none;
+	color: #3ccace;
+	margin-right: auto;
+}
+
 .another-item {
 	display: block;
 	margin: 30px 0px 8px;
